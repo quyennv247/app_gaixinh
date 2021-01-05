@@ -1,4 +1,4 @@
-#Tue Dec 29 23:47:08 ICT 2020
-base.0=/Users/quyennv/Desktop/app_gaixinh/android/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
+#Tue Jan 05 17:07:27 ICT 2021
+base.0=D\:\\Projects\\2020\\Project_Gaixinh\\SourceCode\\Girl.App\\app_gaixinh\\android\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
