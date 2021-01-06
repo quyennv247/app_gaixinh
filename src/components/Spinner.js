@@ -5,7 +5,7 @@ import { COLORS } from "../constants";
 const Spinner = () => {
 return (
 		<View style={[styles.container, styles.horizontal]}>
-			<ActivityIndicator animating size='small' color={COLORS.primary} />
+			<ActivityIndicator animating size='large' color={COLORS.secondary} />
 		</View>
 	);
 };
@@ -14,7 +14,7 @@ const styles = {
 	container: {
 		width: '100%',
 		justifyContent: 'center',
-		alignSelf: 'center'
+		alignSelf: 'center',
 	},
 
 	horizontal: {

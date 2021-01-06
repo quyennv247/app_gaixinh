@@ -1,11 +1,12 @@
 import React from "react";
-import { View, Text, StyleSheet, StatusBar, SafeAreaView, FlatList, Dimensions, Pressable, Image  } from "react-native";
+import { View, Text, StyleSheet, StatusBar, TouchableOpacity, FlatList, Dimensions, Pressable, Image  } from "react-native";
 import { COLORS } from "../../constants";
 var { width, height } = Dimensions.get('window');
 import girlService from "../../api/girlService";
 import SearchBar from './components/SearchBar';
 import Icon from "react-native-vector-icons/Feather";
 Icon.loadFont();
+import Loading from "../../components/Loading";
 
 class GirlScreen extends React.Component {
     constructor(props){
@@ -32,6 +33,14 @@ class GirlScreen extends React.Component {
     componentDidMount() {
         this.setState({ loading: true });
         this.getData();
+    }
+
+    handleLoadMore = () => {
+        if(this.state.isLoadMore){
+            this.setState({ loadingMore: true });
+            this.setState({ pageIndex: this.state.pageIndex += 1 });
+            this.getData();
+        }
     }
 
     getData = () => {
@@ -63,6 +72,12 @@ class GirlScreen extends React.Component {
         });
     }
 
+    handleClickItem(id){
+        this.props.navigation.navigate('Girl-Detail', {
+            id: id
+        });
+    }
+
     render(){
         return(
             <View style={styles.container}>
@@ -75,18 +90,19 @@ class GirlScreen extends React.Component {
                         renderItem={({ item }) => this.renderItem(item)}
                         ListFooterComponent={this.renderFooter.bind(this)}
                         onEndReachedThreshold={0}
-                        onEndReached={() => this.handleLoadMore()}
                         scrollEnabled={true}
                         numColumns={2}
                     />
                 </View>
+
+                <Loading show={this.state.loading} />
             </View>
         )
     }
 
     renderItem = (item) => {
         return (
-            <Pressable onPress={() => this.onOpenModal(item)} key={item.Id} style={styles.itemContainer}>
+            <Pressable onPress={() => this.handleClickItem(item.Id)} key={item.Id} style={styles.itemContainer}>
                 <View style={styles.itemWrapper}>
                     <Image style={styles.image} source={{uri : item.Image.FullPath}}/>
                     <View style={styles.info}>
@@ -105,9 +121,23 @@ class GirlScreen extends React.Component {
     }
 
     renderFooter = () => {
-        if (!this.props.loading) return null;
-        return (
-            <Spinner size="small" />
+        return(
+            <View style={this.state.isLoadMore ? styles.footer : styles.none}>
+                {
+                    this.state.isLoadMore
+                    ? <TouchableOpacity activeOpacity={1} onPress={this.handleLoadMore} style={styles.loadMoreBtn}>  
+                    {
+                        this.state.loadingMore 
+                        ? 
+                            <Text style={styles.loadMoreText}>Đang tải...</Text>
+                            
+                        : <Text style={styles.btnText}>Xem thêm</Text>
+                    }
+                    </TouchableOpacity>
+                    : null
+                }
+                
+            </View>
         );
     };
 }
@@ -118,6 +148,10 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: COLORS.bg,
     }, 
+
+    none: {
+        display: 'none'
+    },
     
     line: {
         height: 0.5,
@@ -136,7 +170,8 @@ const styles = StyleSheet.create({
         paddingRight: 10,
         marginTop: 10,
         width: '100%',
-        backgroundColor: COLORS.bg
+        backgroundColor: COLORS.bg,
+        marginBottom: 20
     },
 
     itemContainer: {
@@ -156,17 +191,11 @@ const styles = StyleSheet.create({
         height: height / 3,
     },
 
-    footer: {
-        position: 'absolute',
-        bottom: 3,
-        paddingLeft: 10,
-        width: '100%',
-    },
-
     info:{
         position: 'absolute',
-        bottom: 3,
+        bottom: 0,
         paddingLeft: 15,
+        backgroundColor: 'rgba(0,0,0,.4)'
     },
 
     title: {
@@ -182,7 +211,8 @@ const styles = StyleSheet.create({
     },
 
     address: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        paddingBottom: 3
     },
 
     addressText: {
@@ -203,6 +233,33 @@ const styles = StyleSheet.create({
     priceText:{
         color: COLORS.white
     },
+
+    footer: {
+        borderColor: COLORS.white,
+        borderWidth: 0.5,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: 10,
+        paddingBottom: 0,
+        backgroundColor: COLORS.bg,
+        marginBottom: 0,
+        marginLeft: 10,
+        paddingBottom: 10
+    },
+
+    loadMoreBtn: {
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
+    loadMoreText: {
+        color: COLORS.white
+    },
+
+    btnText: {
+        color: COLORS.white
+    }
 
 });
 

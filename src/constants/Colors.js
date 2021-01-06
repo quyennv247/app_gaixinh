@@ -13,7 +13,7 @@ export const COLORS = {
     textGray: '#B8BBC6',
     yellow: '#FFD428',
     purple: '#5856D6',
-    blue: '#007AFF',
+    blue: '#00d25b',
 };
 
 export default COLORS

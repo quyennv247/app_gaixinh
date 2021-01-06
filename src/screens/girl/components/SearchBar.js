@@ -33,7 +33,7 @@ const style = StyleSheet.create({
         paddingLeft: 10,
         paddingRight: 15,
         width: '100%',
-        paddingTop: 55,
+        paddingTop: 35,
         paddingBottom: 15,
     },
 
