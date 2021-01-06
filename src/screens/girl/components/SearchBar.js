@@ -31,9 +31,9 @@ const style = StyleSheet.create({
         alignContent: 'center',
         alignItems: 'center',
         paddingLeft: 10,
-        paddingRight: 10,
+        paddingRight: 15,
         width: '100%',
-        paddingTop: 35,
+        paddingTop: 55,
         paddingBottom: 15,
     },
 
@@ -46,7 +46,7 @@ const style = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         borderRadius: 20,
-        paddingLeft: 5,
+        paddingLeft: 0,
     },
 
     searchIcon: {
@@ -65,7 +65,7 @@ const style = StyleSheet.create({
 
     logo: {
         flex: 1,
-        paddingRight: 15
+        paddingRight: 7
     },
 
     iconLogo: {

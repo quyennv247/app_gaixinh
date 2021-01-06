@@ -65,8 +65,8 @@ class GirlScreen extends React.Component {
 
     render(){
         return(
-            <SafeAreaView style={styles.container}>
-                <StatusBar backgroundColor={COLORS.bgHeader} translucent={true}/>
+            <View style={styles.container}>
+                <StatusBar backgroundColor={COLORS.bgHeader} translucent barStyle="light-content" />
                 <SearchBar navigation={this.props.navigation} />
                 <View style={styles.wrapper}>
                     <FlatList
@@ -80,7 +80,7 @@ class GirlScreen extends React.Component {
                         numColumns={2}
                     />
                 </View>
-            </SafeAreaView>
+            </View>
         )
     }
 
