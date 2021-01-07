@@ -1,5 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, StatusBar, ScrollView, Dimensions  } from "react-native";
+import { WebView } from 'react-native-webview';
+import HTML from "react-native-render-html";
 import { COLORS } from '../../constants';
 import girlService from '../../api/girlService';
 import { Spinner } from '../../components'
@@ -25,8 +27,6 @@ class GirlDetailScreen extends React.Component {
             this.setState({ loading: false });
             if(response.statusCode == 200){
                 this.setState({ data: response.data });
-
-                console.log(response.data);
             }
             else{
                 alert(response.error);
@@ -36,6 +36,9 @@ class GirlDetailScreen extends React.Component {
     }
 
     render(){
+        const styleHTML = {
+            h1: { backgroundColor: '#FFFFFF' }
+        }
         if(this.state.loading){
             return (
                 <View style={styles.container}>
@@ -83,7 +86,7 @@ class GirlDetailScreen extends React.Component {
                                 {
                                     this.state.data.GirlServices.map((service)=>{
                                         return(
-                                            <Text style={styles.value2}>{service.Title} - </Text>
+                                            <Text key={service.Id} style={styles.value2}>{service.Title} - </Text>
                                         )
                                     })
                                 }
@@ -92,7 +95,7 @@ class GirlDetailScreen extends React.Component {
                         </View>
 
                         <View style={styles.content}>
-                 
+                            <HTML htmlStyles={ styleHTML } source={{ html: '<h1>I am rendered in a <i>WebView</i></h1>' }} contentWidth={width} />
                         </View>
                     </View>
                     
@@ -105,11 +108,16 @@ class GirlDetailScreen extends React.Component {
     }
 }
 
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: COLORS.bg,
         paddingTop: 30,
+    },
+
+    p:{
+        color: COLORS.white
     },
 
     body: {
@@ -185,11 +193,13 @@ const styles = StyleSheet.create({
         width: width - 20,
         flexDirection: 'row',
         flexWrap: 'wrap',
-        marginBottom: 40
+        marginBottom: 40,
+        paddingTop: 20,
+        color: COLORS.white,
     },
 
     contentText: {
-        color: COLORS.white
+        color: COLORS.white,
     }
 })
 
