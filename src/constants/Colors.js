@@ -11,9 +11,11 @@ export const COLORS = {
     bg: "#0d151f",
     border: "#707070",
     textGray: '#B8BBC6',
-    yellow: '#FFD428',
+    yellow: '#ffc107',
     purple: '#5856D6',
-    blue: '#00d25b',
+    blue: '#46e1ff',
+    green: '#00d25b',
+    borderButton: '#313131'
 };
 
 export default COLORS

@@ -18,12 +18,12 @@ const tabBarOptions = {
 
     showLabel: true,
     style: {
-      backgroundColor: COLORS.white,
-      borderTopColor: COLORS.grey,
+      backgroundColor: COLORS.bgHeader,
+      borderTopColor: COLORS.bgHeader,
       paddingBottom: 5
     },
     activeTintColor: COLORS.primary,
-    inactiveTintColor: COLORS.colorTab,
+    inactiveTintColor: COLORS.white,
 };
 
 const screenOptions = ({ route }) => ({
@@ -51,7 +51,7 @@ const screenOptions = ({ route }) => ({
         iconName = "home";
     }
 
-    return <AntDesign name={iconName} size={24} color={ focused ? COLORS.primary : COLORS.colorTab } />;
+    return <AntDesign name={iconName} size={24} color={ focused ? COLORS.primary : COLORS.white } />;
 
   },
 });

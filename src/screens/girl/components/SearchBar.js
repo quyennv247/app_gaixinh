@@ -12,7 +12,7 @@ const SearchBar = ({ navigation }) => {
             </View>
             <View style={style.searchBar}>
                 <Icon style={style.searchIcon} name='search'></Icon>
-                <Pressable onPress={() => navigation.navigate('Search')} style={style.searchBtn}>
+                <Pressable onPress={() => navigation.navigate('Girl-Search')} style={style.searchBtn}>
                     <Text  style={style.searchText}>Tìm kiếm</Text>
                 </Pressable> 
             </View>

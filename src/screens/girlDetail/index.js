@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, StatusBar, ScrollView, Dimensions  } from "react-native";
-import { WebView } from 'react-native-webview';
+import Icon from "react-native-vector-icons/Feather";
+Icon.loadFont();
 import HTML from "react-native-render-html";
 import { COLORS } from '../../constants';
 import girlService from '../../api/girlService';
@@ -36,9 +37,6 @@ class GirlDetailScreen extends React.Component {
     }
 
     render(){
-        const styleHTML = {
-            h1: { backgroundColor: '#FFFFFF' }
-        }
         if(this.state.loading){
             return (
                 <View style={styles.container}>
@@ -47,59 +45,75 @@ class GirlDetailScreen extends React.Component {
             )
         }
         else if(this.state.data != null){
-            return(
-                <ScrollView style={styles.container}>
-                    <StatusBar backgroundColor={COLORS.bgHeader} translucent barStyle="light-content" />
-                    <View style={styles.gallery}>
-                        <Gallery data={this.state.data.Galleries} />
-                    </View>
-                    <View style={styles.body}>
-                        <View style={styles.title}>
-                            <Text style={styles.titleText}>{this.state.data.Title}</Text>
-                        </View>
 
-                        <View style={styles.intro}>
-                            <Text style={styles.introText}>Thông tin cơ bản</Text>
-                            <View style={styles.group}>
-                                <Text style={styles.label}>Năm sinh:</Text>
-                                <Text style={styles.value}>{this.state.data.Birthday}</Text>
+            const description = '<div style="color:white;">' + this.state.data.Description + '</div>';
+
+            return(
+                <View style={styles.container}>
+                    <ScrollView>
+                        <StatusBar backgroundColor={COLORS.bgHeader} translucent barStyle="light-content" />
+                        <View style={styles.gallery}>
+                            <Gallery data={this.state.data.Galleries} />
+                        </View>
+                        <View style={styles.body}>
+                            <View style={styles.title}>
+                                <Text style={styles.titleText}>{this.state.data.Title}</Text>
                             </View>
-                            <View style={styles.group2}>
-                                <Text style={styles.label}>Chiều cao:</Text>
-                                <Text style={styles.value}>{this.state.data.Height}cm</Text>
-                            </View>
-                            <View style={styles.group}>
-                                <Text style={styles.label}>Cân nặng:</Text>
-                                <Text style={styles.value}>{this.state.data.Weight}kg</Text>
-                            </View>
-                            <View style={styles.group2}>
-                                <Text style={styles.label}>Số đo 3 vòng:</Text>
-                                <Text style={styles.value}>{this.state.data.Measurement}</Text>
-                            </View>
-                            <View style={styles.group}>
-                                <Text style={styles.label}>Làm việc:</Text>
-                                <Text style={styles.value}>{this.state.data.WorkingHour}</Text>
-                            </View>
-                            <View style={styles.group2}>
-                                <Text style={styles.label}>Dịch vụ:</Text>
-                                <View style={styles.value}>
-                                {
-                                    this.state.data.GirlServices.map((service)=>{
-                                        return(
-                                            <Text key={service.Id} style={styles.value2}>{service.Title} - </Text>
-                                        )
-                                    })
-                                }
+
+                            <View style={styles.intro}>
+                                <Text style={styles.introText}>Thông tin cơ bản</Text>
+                                <View style={styles.group}>
+                                    <Text style={styles.label}>Năm sinh:</Text>
+                                    <Text style={styles.value}>{this.state.data.Birthday}</Text>
+                                </View>
+                                <View style={styles.group2}>
+                                    <Text style={styles.label}>Chiều cao:</Text>
+                                    <Text style={styles.value}>{this.state.data.Height}cm</Text>
+                                </View>
+                                <View style={styles.group}>
+                                    <Text style={styles.label}>Cân nặng:</Text>
+                                    <Text style={styles.value}>{this.state.data.Weight}kg</Text>
+                                </View>
+                                <View style={styles.group2}>
+                                    <Text style={styles.label}>Số đo 3 vòng:</Text>
+                                    <Text style={styles.value}>{this.state.data.Measurement}</Text>
+                                </View>
+                                <View style={styles.group}>
+                                    <Text style={styles.label}>Làm việc:</Text>
+                                    <Text style={styles.value}>{this.state.data.WorkingHour}</Text>
+                                </View>
+                                <View style={styles.group2}>
+                                    <Text style={styles.label}>Dịch vụ:</Text>
+                                    <View style={styles.value}>
+                                    {
+                                        this.state.data.GirlServices.map((service)=>{
+                                            return(
+                                                <Text key={service.Id} style={styles.value2}>{service.Title} - </Text>
+                                            )
+                                        })
+                                    }
+                                    </View>
                                 </View>
                             </View>
-                        </View>
 
-                        <View style={styles.content}>
-                            <HTML htmlStyles={ styleHTML } source={{ html: '<h1>I am rendered in a <i>WebView</i></h1>' }} contentWidth={width} />
+                            <View style={styles.content}>
+                                <HTML source={{ html: description }} contentWidth={width} />
+                            </View>
+                        </View>
+                    </ScrollView>
+
+                    <View style={styles.action}>
+                        <View style={styles.phone}>
+                            <Icon style={styles.phonIcon} name='phone-call'/>
+                            <Text style={styles.phoneText}>Gọi điện</Text>
+                        </View>
+                        <View style={styles.price}>
+                            <Icon style={styles.priceIcon} name='dollar-sign'/>
+                            <Text style={styles.priceText}>{this.state.data.Price}K</Text>
                         </View>
                     </View>
-                    
-                </ScrollView>
+
+                </View>
             )
         }
         else{
@@ -108,16 +122,11 @@ class GirlDetailScreen extends React.Component {
     }
 }
 
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: COLORS.bg,
         paddingTop: 30,
-    },
-
-    p:{
-        color: COLORS.white
     },
 
     body: {
@@ -193,14 +202,67 @@ const styles = StyleSheet.create({
         width: width - 20,
         flexDirection: 'row',
         flexWrap: 'wrap',
-        marginBottom: 40,
+        marginBottom: 50,
         paddingTop: 20,
         color: COLORS.white,
     },
 
     contentText: {
         color: COLORS.white,
-    }
+    },
+
+    action: {
+        position: 'absolute',
+        bottom: 0,
+        width: width,
+        flexDirection: 'row',
+        justifyContent: 'flex-start'
+    },
+
+    phone: {
+        width: width / 2,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        backgroundColor: COLORS.secondary,
+        paddingTop: 8,
+        paddingBottom: 8,
+    },
+
+    phonIcon: {
+        color: COLORS.white,
+        fontSize: 20,
+        paddingRight: 10,
+        paddingLeft: 10,
+        paddingTop: 3
+    },
+
+    phoneText: {
+        color: COLORS.white,
+        fontSize: 18
+    },
+
+    price: {
+        width: width / 2,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        backgroundColor: COLORS.green,
+        paddingTop: 8,
+        paddingBottom: 8,
+    },
+
+    priceIcon: {
+        color: COLORS.white,
+        fontSize: 20,
+        paddingRight: 0,
+        paddingLeft: 10,
+        paddingTop: 3
+    },
+
+    priceText: {
+        color: COLORS.white,
+        fontSize: 20
+    },
+
 })
 
 export default GirlDetailScreen
