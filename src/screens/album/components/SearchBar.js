@@ -59,7 +59,8 @@ const style = StyleSheet.create({
     },
 
     search: {
-        
+        height:0,
+        width: 0 
     },
 
     searchIcon: {

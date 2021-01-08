@@ -6,7 +6,7 @@ import girlService from "../../api/girlService";
 import SearchBar from './components/SearchBar';
 import Icon from "react-native-vector-icons/Feather";
 Icon.loadFont();
-import Loading from "../../components/Loading";
+import { Spinner } from "../../components";
 
 class GirlScreen extends React.Component {
     constructor(props){
@@ -21,8 +21,6 @@ class GirlScreen extends React.Component {
             product: null,
             quantity: 1,
             pager: null,
-            latitude: '',
-            longitude: '',
             total: 0,
             refreshing: false,
             isLoadMore: false,
@@ -79,25 +77,34 @@ class GirlScreen extends React.Component {
     }
 
     render(){
-        return(
-            <View style={styles.container}>
-                <StatusBar backgroundColor={COLORS.bgHeader} translucent barStyle="light-content" />
-                <SearchBar navigation={this.props.navigation} />
-                <View style={styles.wrapper}>
-                    <FlatList
-                        data={this.state.data}
-                        keyExtractor={(e, i) => i.toString()}
-                        renderItem={({ item }) => this.renderItem(item)}
-                        ListFooterComponent={this.renderFooter.bind(this)}
-                        onEndReachedThreshold={0}
-                        scrollEnabled={true}
-                        numColumns={2}
-                    />
+        if(this.state.loading){
+            return (
+                <View style={styles.container}>
+                    <StatusBar backgroundColor={COLORS.bgHeader} translucent barStyle="light-content" />
+                    <SearchBar navigation={this.props.navigation} />
+                    <Spinner /> 
                 </View>
-
-                <Loading show={this.state.loading} />
-            </View>
-        )
+            )
+        }
+        else{
+            return(
+                <View style={styles.container}>
+                    <StatusBar backgroundColor={COLORS.bgHeader} translucent barStyle="light-content" />
+                    <SearchBar navigation={this.props.navigation} />
+                    <View style={styles.wrapper}>
+                        <FlatList
+                            data={this.state.data}
+                            keyExtractor={(e, i) => i.toString()}
+                            renderItem={({ item }) => this.renderItem(item)}
+                            ListFooterComponent={this.renderFooter.bind(this)}
+                            onEndReachedThreshold={0}
+                            scrollEnabled={true}
+                            numColumns={2}
+                        />
+                    </View>
+                </View>
+            )
+        }
     }
 
     renderItem = (item) => {
@@ -195,7 +202,8 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 0,
         paddingLeft: 15,
-        backgroundColor: 'rgba(0,0,0,.4)'
+        backgroundColor: 'rgba(0,0,0,.4)',
+        width: '100%',
     },
 
     title: {

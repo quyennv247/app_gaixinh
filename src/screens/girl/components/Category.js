@@ -104,14 +104,12 @@ const styles = StyleSheet.create({
         marginRight: 15,
         marginBottom: 15,
         padding: 10,
-        paddingLeft: 20,
-        paddingRight: 20,
         borderColor: COLORS.borderButton,
         borderWidth: 0.5
     },
 
     itemText: {
-        fontSize: 16,
+        fontSize: 14,
         color: COLORS.blue
     },
 
@@ -119,16 +117,13 @@ const styles = StyleSheet.create({
         marginRight: 15,
         marginBottom: 15,
         padding: 10,
-        paddingLeft: 20,
-        paddingRight: 20,
         borderColor: COLORS.secondary,
         borderWidth: 0.5
     },
 
     itemTextActive: {
-        fontSize: 16,
+        fontSize: 14,
         color: COLORS.secondary,
-        fontWeight: 'bold'
     }
 });
 

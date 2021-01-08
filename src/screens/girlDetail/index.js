@@ -1,7 +1,9 @@
 import React from "react";
-import { View, Text, StyleSheet, StatusBar, ScrollView, Dimensions  } from "react-native";
+import { View, Text, StyleSheet, StatusBar, ScrollView, Dimensions, Pressable  } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 Icon.loadFont();
+import AntDesign from "react-native-vector-icons/AntDesign";
+AntDesign.loadFont();
 import HTML from "react-native-render-html";
 import { COLORS } from '../../constants';
 import girlService from '../../api/girlService';
@@ -50,8 +52,14 @@ class GirlDetailScreen extends React.Component {
 
             return(
                 <View style={styles.container}>
+                    <StatusBar backgroundColor={COLORS.bgHeader} translucent barStyle="light-content" />
+                    <View style={styles.navigation}>
+                        <Pressable style={styles.btnBack} onPress={() => this.props.navigation.goBack()}>
+                            <AntDesign style={styles.backIcon} name="left" />
+                        </Pressable>
+                        <Text style={styles.categoryText}>{this.state.data.Category.CategoryName}</Text>
+                    </View>
                     <ScrollView>
-                        <StatusBar backgroundColor={COLORS.bgHeader} translucent barStyle="light-content" />
                         <View style={styles.gallery}>
                             <Gallery data={this.state.data.Galleries} />
                         </View>
@@ -123,10 +131,35 @@ class GirlDetailScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    navigation: {
+        backgroundColor: COLORS.bgHeader,
+        marginBottom: 5,
+        paddingVertical: 10,
+        paddingHorizontal: 10,
+        flexDirection: 'row',
+        justifyContent: 'flex-start'
+    },
+
+    btnBack: {
+        width: 50,
+        height: 20,
+        width: '40%'
+    },
+
+    categoryText: {
+        color: COLORS.white,
+        fontSize: 16
+    },
+
+    backIcon:{
+        color: COLORS.white,
+        fontSize: 18
+    },
+
     container: {
         flex: 1,
         backgroundColor: COLORS.bg,
-        paddingTop: 30,
+        paddingTop: 24,
     },
 
     body: {

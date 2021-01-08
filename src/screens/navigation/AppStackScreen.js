@@ -59,10 +59,10 @@ const screenOptions = ({ route }) => ({
 const MainTabScreen = () => {
     return (
         <Tab.Navigator tabBarOptions={tabBarOptions} screenOptions={screenOptions} >
-            <Tab.Screen name="Girl" tabBarLabel="Girl" component={GirlStackScreen} />
-            <Tab.Screen name="Video" options={{ tabBarLabel: 'Đơn hàng' }} component={VideoStackScreen} />
-            <Tab.Screen name="Album" options={{ tabBarLabel: 'Thông báo' }} component={AlbumStackScreen} />
-            <Tab.Screen name="News" options={{ tabBarLabel: 'Tài khoản' }} component={NewsStackScreen} />
+            <Tab.Screen name="Girl" options={{ tabBarLabel: 'Gái' }} component={GirlStackScreen} />
+            <Tab.Screen name="Video" options={{ tabBarLabel: 'Phim sex' }} component={VideoStackScreen} />
+            <Tab.Screen name="Album" options={{ tabBarLabel: 'Ảnh sex' }} component={AlbumStackScreen} />
+            <Tab.Screen name="News" options={{ tabBarLabel: 'Ký sự' }} component={NewsStackScreen} />
             <Tab.Screen name="Account" options={{ tabBarLabel: 'Tài khoản' }} component={AccountStackScreen} />
         </Tab.Navigator>
     );

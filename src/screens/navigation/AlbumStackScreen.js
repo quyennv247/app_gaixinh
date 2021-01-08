@@ -1,14 +1,16 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import GirlScreen from '../girl';
+import AlbumScreen from '../album';
+import AlbumDetailScreen from '../albumDetail'
 
 const AlbumStack = createStackNavigator();
 
 const AlbumStackScreen = () => {
   return (
-    <GirlStack.Navigator>
-      <GirlStack.Screen name="Girl" options={{headerShown: false}} component={GirlScreen} />
-    </GirlStack.Navigator>
+    <AlbumStack.Navigator>
+      <AlbumStack.Screen name="Album" options={{headerShown: false}} component={AlbumScreen} />
+      <AlbumStack.Screen name="Album-Detail" options={{headerShown: false}} component={AlbumDetailScreen} />
+    </AlbumStack.Navigator>
   );
 }
 
