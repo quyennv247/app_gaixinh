@@ -47,6 +47,8 @@ const styles = StyleSheet.create({
         alignItems:'center',
         paddingLeft: 10,
         paddingRight: 10,
+        backgroundColor: COLORS.bg,
+        paddingTop: 5
     },
 
     swiper: {

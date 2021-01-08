@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, StatusBar, Dimensions, FlatList, TouchableOpacity, Pressable, Image  } from "react-native";
+import { View, Text, StyleSheet, StatusBar, Dimensions, FlatList, TouchableOpacity, Pressable, Image, SafeAreaView } from "react-native";
 import { COLORS } from "../../constants";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 Ionicons.loadFont();
@@ -101,7 +101,7 @@ class SearchScreen extends React.Component {
 
     render(){
         return(
-            <View style={styles.container}>
+            <SafeAreaView style={styles.container}>
                 <StatusBar backgroundColor={COLORS.bgHeader} translucent barStyle="light-content" />
                 <View style={styles.header}>
                     <TouchableOpacity style={styles.btnCancel} onPress={() => this.props.navigation.goBack()}>
@@ -144,7 +144,7 @@ class SearchScreen extends React.Component {
                 }
                 
                 
-            </View>
+            </SafeAreaView>
         )
     }
 
@@ -193,7 +193,8 @@ class SearchScreen extends React.Component {
 const styles = StyleSheet.create({
     category: {
         paddingLeft: 10,
-        paddingBottom: 10
+        paddingBottom: 10,
+        backgroundColor: COLORS.bg
     },
 
     categoryText: {
@@ -203,7 +204,7 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
-        backgroundColor: COLORS.bg,
+        backgroundColor: COLORS.bgHeader,
     },
 
     header: {
@@ -217,7 +218,6 @@ const styles = StyleSheet.create({
         paddingBottom: 0,
         borderBottomColor: COLORS.gray5,
         borderBottomWidth: 0.5,
-        paddingTop: 35,
         paddingBottom: 13
     },
 
@@ -258,10 +258,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingRight: 10,
-        marginTop: 10,
+        paddingTop: 10,
         width: '100%',
-        backgroundColor: COLORS.bg,
-        marginBottom: 20
+        backgroundColor: COLORS.bg
     },
 
     itemContainer: {
@@ -285,7 +284,9 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 0,
         paddingLeft: 15,
-        backgroundColor: 'rgba(0,0,0,.4)'
+        backgroundColor: 'rgba(0,0,0,.4)',
+        width: '100%',
+        paddingTop: 5
     },
 
     title: {
@@ -325,16 +326,16 @@ const styles = StyleSheet.create({
     },
 
     footer: {
-        borderColor: COLORS.white,
+        borderColor: COLORS.borderButton,
         borderWidth: 0.5,
         justifyContent: 'center',
         alignItems: 'center',
         paddingTop: 10,
-        paddingBottom: 0,
+        paddingBottom: 10,
         backgroundColor: COLORS.bg,
         marginBottom: 0,
         marginLeft: 10,
-        paddingBottom: 10
+        marginBottom: 10
     },
 
     loadMoreBtn: {

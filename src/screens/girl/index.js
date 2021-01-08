@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, StatusBar, TouchableOpacity, FlatList, Dimensions, Pressable, Image  } from "react-native";
+import { View, Text, StyleSheet, StatusBar, TouchableOpacity, FlatList, Dimensions, Pressable, Image, SafeAreaView  } from "react-native";
 import { COLORS } from "../../constants";
 var { width, height } = Dimensions.get('window');
 import girlService from "../../api/girlService";
@@ -79,16 +79,16 @@ class GirlScreen extends React.Component {
     render(){
         if(this.state.loading){
             return (
-                <View style={styles.container}>
+                <SafeAreaView style={styles.container}>
                     <StatusBar backgroundColor={COLORS.bgHeader} translucent barStyle="light-content" />
                     <SearchBar navigation={this.props.navigation} />
                     <Spinner /> 
-                </View>
+                </SafeAreaView>
             )
         }
         else{
             return(
-                <View style={styles.container}>
+                <SafeAreaView style={styles.container}>
                     <StatusBar backgroundColor={COLORS.bgHeader} translucent barStyle="light-content" />
                     <SearchBar navigation={this.props.navigation} />
                     <View style={styles.wrapper}>
@@ -102,7 +102,7 @@ class GirlScreen extends React.Component {
                             numColumns={2}
                         />
                     </View>
-                </View>
+                </SafeAreaView>
             )
         }
     }
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: COLORS.bg,
+        backgroundColor: COLORS.bgHeader,
     }, 
 
     none: {
@@ -175,10 +175,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingRight: 10,
-        marginTop: 10,
         width: '100%',
         backgroundColor: COLORS.bg,
-        marginBottom: 20
+        paddingTop: 10
     },
 
     itemContainer: {
@@ -204,6 +203,7 @@ const styles = StyleSheet.create({
         paddingLeft: 15,
         backgroundColor: 'rgba(0,0,0,.4)',
         width: '100%',
+        paddingTop: 5
     },
 
     title: {
@@ -243,16 +243,16 @@ const styles = StyleSheet.create({
     },
 
     footer: {
-        borderColor: COLORS.white,
+        borderColor: COLORS.borderButton,
         borderWidth: 0.5,
         justifyContent: 'center',
         alignItems: 'center',
         paddingTop: 10,
-        paddingBottom: 0,
+        paddingBottom: 10,
         backgroundColor: COLORS.bg,
         marginBottom: 0,
         marginLeft: 10,
-        paddingBottom: 10
+        marginBottom: 20
     },
 
     loadMoreBtn: {

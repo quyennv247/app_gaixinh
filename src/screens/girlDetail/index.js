@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, StatusBar, ScrollView, Dimensions, Pressable  } from "react-native";
+import { View, Text, StyleSheet, StatusBar, ScrollView, Dimensions, Pressable, SafeAreaView  } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 Icon.loadFont();
 import AntDesign from "react-native-vector-icons/AntDesign";
@@ -41,9 +41,9 @@ class GirlDetailScreen extends React.Component {
     render(){
         if(this.state.loading){
             return (
-                <View style={styles.container}>
+                <SafeAreaView style={styles.container}>
                     <Spinner /> 
-                </View>
+                </SafeAreaView>
             )
         }
         else if(this.state.data != null){
@@ -51,7 +51,7 @@ class GirlDetailScreen extends React.Component {
             const description = '<div style="color:white;">' + this.state.data.Description + '</div>';
 
             return(
-                <View style={styles.container}>
+                <SafeAreaView style={styles.container}>
                     <StatusBar backgroundColor={COLORS.bgHeader} translucent barStyle="light-content" />
                     <View style={styles.navigation}>
                         <Pressable style={styles.btnBack} onPress={() => this.props.navigation.goBack()}>
@@ -121,7 +121,7 @@ class GirlDetailScreen extends React.Component {
                         </View>
                     </View>
 
-                </View>
+                </SafeAreaView>
             )
         }
         else{
@@ -133,7 +133,6 @@ class GirlDetailScreen extends React.Component {
 const styles = StyleSheet.create({
     navigation: {
         backgroundColor: COLORS.bgHeader,
-        marginBottom: 5,
         paddingVertical: 10,
         paddingHorizontal: 10,
         flexDirection: 'row',
@@ -158,8 +157,7 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
-        backgroundColor: COLORS.bg,
-        paddingTop: 24,
+        backgroundColor: COLORS.bgHeader,
     },
 
     body: {
@@ -168,7 +166,8 @@ const styles = StyleSheet.create({
         width: width,
         paddingLeft: 10,
         paddingRight: 10,
-        marginBottom: 20
+        backgroundColor: COLORS.bg,
+        paddingBottom: 12,
     },
 
     gallery: {
@@ -249,7 +248,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         width: width,
         flexDirection: 'row',
-        justifyContent: 'flex-start'
+        justifyContent: 'flex-start',
     },
 
     phone: {

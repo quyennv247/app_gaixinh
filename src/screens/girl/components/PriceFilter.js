@@ -64,7 +64,8 @@ class PriceFilter extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        paddingLeft: 10
+        paddingLeft: 10,
+        backgroundColor: COLORS.bg
     }, 
 
     header: {

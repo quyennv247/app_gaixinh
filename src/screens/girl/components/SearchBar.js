@@ -24,7 +24,6 @@ const SearchBar = ({ navigation }) => {
 };
 
 const style = StyleSheet.create({
-    
     container: {
         backgroundColor: COLORS.bgHeader,
         display: 'flex',
@@ -35,8 +34,7 @@ const style = StyleSheet.create({
         paddingLeft: 10,
         paddingRight: 10,
         width: '100%',
-        paddingTop: 30,
-        paddingBottom: 10,
+        marginBottom: 10,
     },
 
     logo: {
@@ -55,7 +53,8 @@ const style = StyleSheet.create({
 
     nameText: {
         color: COLORS.primary,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontSize: 16
     },
 
     search: {

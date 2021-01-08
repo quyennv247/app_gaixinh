@@ -1,5 +1,5 @@
 import React from "react";
-import { LogBox, View, Text, StyleSheet, StatusBar, ScrollView, Dimensions, Pressable, Image  } from "react-native";
+import { LogBox, View, Text, StyleSheet, StatusBar, ScrollView, Dimensions, Pressable, Image, SafeAreaView } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 Icon.loadFont();
 import AntDesign from "react-native-vector-icons/AntDesign";
@@ -33,22 +33,6 @@ class AlbumDetailScreen extends React.Component {
             this.setState({ loading: false });
             if(response.statusCode == 200){
                 this.setState({ data: response.data });
-
-                let galleries = [];
-                for (let item of response.data) {
-                    const obj = {
-                        source: {
-                            uri: item.Image.FullPath
-                        }
-                    }
-                    galleries.push(obj);
-                }
-                
-                console.log(galleries);
-
-                this.setState({
-                    galleries: galleries
-                });
             }
             else{
                 alert(response.error);
@@ -70,28 +54,14 @@ class AlbumDetailScreen extends React.Component {
             )
         }
         else if(this.state.data != null){
-            const images = [
-                {
-                    source: {
-                        uri: 'https://cdn.pixabay.com/photo/2017/08/17/10/47/paris-2650808_960_720.jpg',
-                    }
-                },
-                {
-                    source: {
-                        uri: 'https://media.gaixinhsg.info/Uploads/Album/6/20201119163908463.jpg',
-                    }
-                },
-            ];
+            const images = [];
             return(
-                <View style={styles.container}>
+                <SafeAreaView style={styles.container}>
                     <StatusBar backgroundColor={COLORS.bgHeader} translucent barStyle="light-content" />
                     <View style={styles.navigation}>
                         <Pressable style={styles.btnBack} onPress={() => this.props.navigation.goBack()}>
                             <AntDesign style={styles.backIcon} name="left" />
                         </Pressable>
-                        
-                    </View>
-                    <View style={styles.header}>
                         <Text style={styles.categoryText}>{this.state.data.Title}</Text>
                     </View>
                     <ScrollView style={styles.body} horizontal={false}>
@@ -123,7 +93,7 @@ class AlbumDetailScreen extends React.Component {
                             console.log(index);
                         }}
                     />
-                </View>
+                </SafeAreaView>
             )
         }
         else{
@@ -135,17 +105,17 @@ class AlbumDetailScreen extends React.Component {
 const styles = StyleSheet.create({
     navigation: {
         backgroundColor: COLORS.bgHeader,
-        marginBottom: 5,
         paddingVertical: 10,
         paddingHorizontal: 10,
         flexDirection: 'row',
         justifyContent: 'flex-start',
+        paddingTop: 10,
     },
 
     btnBack: {
         width: 50,
         height: 20,
-        width: '40%'
+        width: 35
     },
 
     categoryText: {
@@ -160,14 +130,8 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
-        backgroundColor: COLORS.bg,
+        backgroundColor: COLORS.bgHeader,
         paddingTop: 24,
-    },
-
-    header: {
-        width: width,
-        paddingHorizontal: 10,
-        paddingBottom: 10
     },
 
     body: {
@@ -175,7 +139,8 @@ const styles = StyleSheet.create({
         width: width,
         paddingLeft: 10,
         paddingRight: 10,
-        marginBottom: 20
+        backgroundColor: COLORS.bg,
+        paddingTop: 10
     },
 
     item: {
