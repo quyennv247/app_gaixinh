@@ -1,14 +1,16 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import GirlScreen from '../girl';
+import NewsScreen from '../news';
+import NewsDetailScreen from "../newsDetail";
 
-const GirlStack = createStackNavigator();
+const NewsStack = createStackNavigator();
 
 const NewsStackScreen = () => {
   return (
-    <GirlStack.Navigator>
-      <GirlStack.Screen name="Girl" options={{headerShown: false}} component={GirlScreen} />
-    </GirlStack.Navigator>
+    <NewsStack.Navigator>
+      <NewsStack.Screen name="News" options={{headerShown: false}} component={NewsScreen} />
+      <NewsStack.Screen name="News-Detail" options={{headerShown: false}} component={NewsDetailScreen} />
+    </NewsStack.Navigator>
   );
 }
 
