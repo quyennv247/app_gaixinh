@@ -1,5 +1,5 @@
 import React from "react";
-import { LogBox, View, Text, StyleSheet, StatusBar, ScrollView, Dimensions, Pressable, SafeAreaView } from "react-native";
+import { LogBox, View, Text, StyleSheet, StatusBar, ScrollView, Dimensions, Pressable, SafeAreaView, Platform } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 Icon.loadFont();
 import AntDesign from "react-native-vector-icons/AntDesign";
@@ -106,8 +106,10 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         flexDirection: 'row',
         justifyContent: 'flex-start',
-        height: 40,
-        width: width
+        alignItems: 'center',
+        alignContent: 'center',
+        height: 50,
+        marginTop: Platform.OS == 'ios' ? 0 : StatusBar.currentHeight
     },
 
     headerTitle: {
@@ -127,8 +129,7 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
-        backgroundColor: COLORS.bgHeader,
-        flexDirection: 'column'
+        backgroundColor: COLORS.bgHeader
     },
 
     body: {

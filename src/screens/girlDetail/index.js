@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, StatusBar, ScrollView, Dimensions, Pressable, SafeAreaView  } from "react-native";
+import { View, Text, StyleSheet, StatusBar, ScrollView, Dimensions, Pressable, SafeAreaView, Platform  } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 Icon.loadFont();
 import AntDesign from "react-native-vector-icons/AntDesign";
@@ -149,13 +149,16 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
+        backgroundColor: COLORS.bgHeader
     },
 
     navigation: {
-        backgroundColor: COLORS.blue,
+        backgroundColor: COLORS.bgHeader,
+        height: 50,
+        marginTop: Platform.OS == 'ios' ? 0 : StatusBar.currentHeight,
         flexDirection: 'row',
-        justifyContent: 'center',
-        height: 70
+        paddingTop: 15,
+        paddingLeft: 10
     },
 
 

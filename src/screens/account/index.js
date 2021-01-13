@@ -10,7 +10,7 @@ class AccountScreen extends React.Component {
     render(){
         return(
             <SafeAreaView style={styles.container}>
-                <StatusBar backgroundColor={COLORS.secondary} translucent barStyle="light-content" />
+                <StatusBar backgroundColor={COLORS.bgHeader} translucent barStyle="light-content" />
                 <View style={styles.navigation}>
                     <Text style={styles.title}>Navigation Screen</Text>
                 </View>
@@ -25,12 +25,13 @@ class AccountScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: COLORS.bgHeader
     },
 
     navigation: {
-        backgroundColor: COLORS.purple,
+        backgroundColor: COLORS.blue,
         height: 50,
-        marginTop: Platform.OS == 'ios' ? 40 : StatusBar.currentHeight
+        marginTop: Platform.OS == 'ios' ? 0 : StatusBar.currentHeight
     },
 
     body: {

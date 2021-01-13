@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, StatusBar, Dimensions, FlatList, TouchableOpacity, Pressable, Image, SafeAreaView } from "react-native";
+import { View, Text, StyleSheet, StatusBar, Dimensions, FlatList, TouchableOpacity, Pressable, Image, SafeAreaView, Platform } from "react-native";
 import { COLORS } from "../../constants";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 Ionicons.loadFont();
@@ -215,10 +215,10 @@ const styles = StyleSheet.create({
         paddingLeft: 15,
         alignContent: 'center',
         alignItems: 'center',
-        paddingBottom: 0,
         borderBottomColor: COLORS.gray5,
         borderBottomWidth: 0.5,
-        paddingBottom: 13
+        height: 50,
+        marginTop: Platform.OS == 'ios' ? 0 : StatusBar.currentHeight
     },
 
     searchIcon: {
