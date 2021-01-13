@@ -1,7 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet, StatusBar, SafeAreaView  } from "react-native";
+import { View, Text, StyleSheet, StatusBar, SafeAreaView, Platform  } from "react-native";
+import { COLORS } from "../../constants";
 
-class AlbumScreen extends React.Component {
+class AccountScreen extends React.Component {
     constructor(props){
         super(props);
     }
@@ -9,7 +10,13 @@ class AlbumScreen extends React.Component {
     render(){
         return(
             <SafeAreaView style={styles.container}>
-                <Text>Home Screen</Text>
+                <StatusBar backgroundColor={COLORS.secondary} translucent barStyle="light-content" />
+                <View style={styles.navigation}>
+                    <Text style={styles.title}>Navigation Screen</Text>
+                </View>
+                <View style={styles.body}>
+                    <Text style={styles.title}>body Screen</Text>
+                </View>
             </SafeAreaView>
         )
     }
@@ -17,7 +24,24 @@ class AlbumScreen extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+    },
+
+    navigation: {
+        backgroundColor: COLORS.purple,
+        height: 50,
+        marginTop: Platform.OS == 'ios' ? 40 : StatusBar.currentHeight
+    },
+
+    body: {
+        flex: 1,
+        borderColor: COLORS.primary,
+        borderWidth: 1,
+        backgroundColor: COLORS.primary,
+    },
+
+    title: {
+        color: COLORS.white
     }
 })
 

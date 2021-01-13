@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import GirlScreen from '../girl';
+import AccountScreen from '../account';
 
-const AlbumStack = createStackNavigator();
+const AccountStack = createStackNavigator();
 
 const AccountStackScreen = () => {
   return (
-    <GirlStack.Navigator>
-      <GirlStack.Screen name="Girl" options={{headerShown: false}} component={GirlScreen} />
-    </GirlStack.Navigator>
+    <AccountStack.Navigator>
+      <AccountStack.Screen name="Account" options={{headerShown: false}} component={AccountScreen} />
+    </AccountStack.Navigator>
   );
 }
 

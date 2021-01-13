@@ -59,11 +59,11 @@ class GirlDetailScreen extends React.Component {
                         </Pressable>
                         <Text style={styles.categoryText}>{this.state.data.Category.CategoryName}</Text>
                     </View>
-                    <ScrollView>
+                    <ScrollView style={styles.body}>
                         <View style={styles.gallery}>
                             <Gallery data={this.state.data.Galleries} />
                         </View>
-                        <View style={styles.body}>
+                        <View>
                             <View style={styles.title}>
                                 <Text style={styles.titleText}>{this.state.data.Title}</Text>
                             </View>
@@ -131,18 +131,10 @@ class GirlDetailScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    navigation: {
-        backgroundColor: COLORS.bgHeader,
-        paddingVertical: 10,
-        paddingHorizontal: 10,
-        flexDirection: 'row',
-        justifyContent: 'flex-start'
-    },
-
+   
     btnBack: {
         width: 50,
         height: 20,
-        width: '40%'
     },
 
     categoryText: {
@@ -157,12 +149,18 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
-        backgroundColor: COLORS.bgHeader,
     },
+
+    navigation: {
+        backgroundColor: COLORS.blue,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        height: 70
+    },
+
 
     body: {
         flex: 1,
-        flexDirection: 'column',
         width: width,
         paddingLeft: 10,
         paddingRight: 10,

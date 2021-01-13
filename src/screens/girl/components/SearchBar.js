@@ -26,15 +26,14 @@ const SearchBar = ({ navigation }) => {
 const style = StyleSheet.create({
     container: {
         backgroundColor: COLORS.bgHeader,
-        display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignContent: 'center',
         alignItems: 'center',
         paddingLeft: 10,
         paddingRight: 10,
-        width: '100%',
-        marginBottom: 10,
+        height: 70,
+        paddingTop: 20
     },
 
     logo: {

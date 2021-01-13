@@ -1,4 +1,4 @@
-# Referenced at D:\Projects\2020\Project_Gaixinh\SourceCode\Girl.App\app_gaixinh-1\android\app\build\intermediates\merged_manifests\debug\AndroidManifest.xml:15
+# Referenced at D:\Projects\2020\Project_Gaixinh\SourceCode\Girl.App\app_gaixinh\android\app\build\intermediates\merged_manifests\debug\AndroidManifest.xml:15
 -keep class androidx.core.app.CoreComponentFactory { <init>(); }
-# Referenced at D:\Projects\2020\Project_Gaixinh\SourceCode\Girl.App\app_gaixinh-1\android\app\build\intermediates\merged_manifests\debug\AndroidManifest.xml:15
+# Referenced at D:\Projects\2020\Project_Gaixinh\SourceCode\Girl.App\app_gaixinh\android\app\build\intermediates\merged_manifests\debug\AndroidManifest.xml:15
 -keep class com.demo.MainApplication { <init>(); }
