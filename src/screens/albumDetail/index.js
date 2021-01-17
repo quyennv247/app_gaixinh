@@ -90,7 +90,7 @@ class AlbumDetailScreen extends React.Component {
                         isVisible={this.state.isImageViewVisible}
                         onClose={() => this.setState({isImageViewVisible: false})}
                         onImageChange={index => {
-                            console.log(index);
+                            //console.log(index);
                         }}
                     />
                 </SafeAreaView>

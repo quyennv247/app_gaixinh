@@ -15,7 +15,8 @@ export const COLORS = {
     purple: '#5856D6',
     blue: '#46e1ff',
     green: '#00d25b',
-    borderButton: '#313131'
+    borderButton: '#313131',
+    textSecond: '#879aa9'
 };
 
 export default COLORS

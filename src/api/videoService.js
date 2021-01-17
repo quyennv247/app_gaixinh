@@ -11,14 +11,14 @@ export default {
         });
     },
 
-    getVideos(pageIndex, pageSize, userId, categortId, title) {
+    getVideos(pageIndex, pageSize, userId, categoryId, title) {
         let url = API_CONTROLLER + 'GetVideos';
         return httpClient.get(url, {
             params: {
                 pageIndex: pageIndex,
                 pageSize: pageSize,
                 userId: userId,
-                categoryId: categortId,
+                categoryId: categoryId,
                 title: title
             }
         });

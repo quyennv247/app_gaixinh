@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, Pressable, Platform } from 'react-native';
+import { StyleSheet, View, Text, Image, Pressable, Platform, StatusBar } from 'react-native';
 import { ICONS, COLORS } from '../../../constants';
 import Icon from "react-native-vector-icons/Feather";
 Icon.loadFont();

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, StatusBar, Dimensions, Platform, PermissionsAndroid } from 'react-native';
+import { View, Text, StyleSheet, StatusBar, Dimensions, Platform, Image, SafeAreaView } from 'react-native';
 import { COLORS } from './../constants';
 import Icon from 'react-native-vector-icons/Feather';
 Icon.loadFont();
@@ -14,59 +14,51 @@ const LandingScreen = () => {
 
     useEffect(() => {
         setTimeout(() =>{
-            setPassword('Test')
-        }, 3000)
+            //setPassword('Test')
+        }, 30000)
     })
 
     return (
-        <View style={style.container}>
-            <StatusBar backgroundColor={COLORS.bg} barStyle="dark-content" />
+        <SafeAreaView style={style.container}>
+            <StatusBar backgroundColor={COLORS.bgHeader} barStyle="dark-content" />
             <View style={style.body}>
-                <Icon style={style.map} name='map-pin' />
-                <View style={style.addressContainer}>
-                    <Text style={style.addressTitle}>Your Delivery Address</Text>
+                <Image source={ require('../assets/images/logo.png') }/>
+                <View style={style.info}>
+                    <Text style={style.title}>GAIXINHSG.INFO</Text>
                 </View>
-                <Text style={style.addressText}>{displayAddress}</Text>
             </View>
-        </View>
+        </SafeAreaView>
     )
 }
 
 const style = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: COLORS.bg
+        backgroundColor: COLORS.white
     },
     
     body: {
         flex: 9,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.bg
+        alignContent: 'center',
+        backgroundColor: COLORS.bgHeader
     },
-    map: {
-        color: COLORS.primary,
-        fontSize: 90
-    },
-    addressContainer: {
+
+    info: {
         width: width - 100,
-        borderBottomColor: COLORS.primary,
-        borderBottomWidth: 0.5,
         padding: 5, 
         marginBottom: 10,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        paddingTop: 20
     },
 
-    addressTitle: {
-        fontSize: 24,
+    title: {
+        fontSize: 18,
         fontWeight: '700',
-        color: COLORS.black
+        color: COLORS.primary
     },
-    addressText: {
-        color: COLORS.textGray,
-        paddingHorizontal: 50
-    }
 })
 
 export default LandingScreen;

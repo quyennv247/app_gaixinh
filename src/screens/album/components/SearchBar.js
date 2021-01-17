@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, Pressable, Platform } from 'react-native';
+import { StyleSheet, View, Text, Image, Pressable, Platform, StatusBar } from 'react-native';
 import { ICONS, COLORS } from '../../../constants';
 import Icon from "react-native-vector-icons/Feather";
 Icon.loadFont();
@@ -11,7 +11,7 @@ const SearchBar = ({ navigation }) => {
                 <Image style={style.iconLogo} source={ICONS.logo}></Image>
             </View>
             <View style={style.name}>
-                <Text style={style.nameText}>GAIXINHSG.INFO</Text>
+                <Text style={style.nameText}>ẢNH SEX</Text>
             </View>
             <View style={style.search}>
                 <Pressable onPress={() => navigation.navigate('Girl-Search')} style={style.searchBtn}>

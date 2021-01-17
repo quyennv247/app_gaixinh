@@ -56,7 +56,16 @@ class NewsDetailScreen extends React.Component {
         if(this.state.loading){
             return (
                 <View style={styles.container}>
-                    <Spinner /> 
+                    <StatusBar backgroundColor={COLORS.bgHeader} translucent barStyle="light-content" />
+                    <View style={styles.navigation}>
+                        <Pressable style={styles.btnBack} onPress={() => this.props.navigation.goBack()}>
+                            <AntDesign style={styles.backIcon} name="left" />
+                        </Pressable>
+                        <Text style={styles.headerTitle}>Ký sự</Text>
+                    </View>
+                    <View style={styles.body}>
+                        <Spinner /> 
+                    </View>
                 </View>
             )
         }
@@ -70,16 +79,20 @@ class NewsDetailScreen extends React.Component {
                         <Pressable style={styles.btnBack} onPress={() => this.props.navigation.goBack()}>
                             <AntDesign style={styles.backIcon} name="left" />
                         </Pressable>
-                        <Text style={styles.headerTitle}>{this.state.data.Title}</Text>
+                        <Text style={styles.headerTitle}>{this.state.data.Category.Title}</Text>
                     </View>
                     <ScrollView style={styles.body}>
-                        <Text style={styles.headerTitle}>{this.state.data.Title}</Text>
+                        <Text style={styles.newsTitle}>{this.state.data.Title}</Text>
 
-                        <Text style={styles.headerTitle}>{this.state.data.PublicDate}</Text>
+                        <Text style={styles.newsDate}>{this.state.data.PublicDate}</Text>
 
-                        <HTML source={{ html: description }} contentWidth={width} />
+                        <View style={styles.newsDescription}>
+                            <HTML source={{ html: description }} contentWidth={width} />
+                        </View>
 
-                        <HTML source={{ html: content }} contentWidth={width} />
+                        <View style={styles.newsContent}>
+                            <HTML source={{ html: content }} contentWidth={width} />
+                        </View>
                     </ScrollView>
                     
                 </SafeAreaView>
@@ -92,6 +105,23 @@ class NewsDetailScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    newsTitle: {
+        fontSize: 16,
+        color: COLORS.white,
+        paddingTop: 10,
+        fontWeight: 'bold'
+    },
+
+    newsDate: {
+        color: COLORS.textSecond,
+        paddingVertical: 10
+    },
+
+    newsDescription: {
+        color: COLORS.white,
+        paddingBottom: 10
+    },
+
     backgroundVideo: {
         position: 'absolute',
         top: 0,
@@ -134,7 +164,6 @@ const styles = StyleSheet.create({
 
     body: {
         flex: 1,
-        width: width,
         paddingLeft: 10,
         paddingRight: 10,
         backgroundColor: COLORS.bg,

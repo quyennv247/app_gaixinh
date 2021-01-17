@@ -1,5 +1,5 @@
 import React from "react";
-import { LogBox, View, Text, StyleSheet, StatusBar, Platform, Dimensions, Pressable, Image, SafeAreaView } from "react-native";
+import { LogBox, View, Text, StyleSheet, StatusBar, Platform, Dimensions, Pressable, SafeAreaView } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 Icon.loadFont();
 import AntDesign from "react-native-vector-icons/AntDesign";
@@ -56,7 +56,16 @@ class VideoDetailScreen extends React.Component {
         if(this.state.loading){
             return (
                 <View style={styles.container}>
-                    <Spinner /> 
+                    <StatusBar backgroundColor={COLORS.bgHeader} translucent barStyle="light-content" />
+                    <View style={styles.navigation}>
+                        <Pressable style={styles.btnBack} onPress={() => this.props.navigation.goBack()}>
+                            <AntDesign style={styles.backIcon} name="left" />
+                        </Pressable>
+                        <Text style={styles.headerTitle}></Text>
+                    </View>
+                    <View style={styles.body}>
+                        <Spinner /> 
+                    </View>
                 </View>
             )
         }
@@ -109,7 +118,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         flexDirection: 'row',
         justifyContent: 'flex-start',
-        height: 50,
+        height: 40,
         marginTop: Platform.OS == 'ios' ? 0 : StatusBar.currentHeight,
     },
 
@@ -119,14 +128,14 @@ const styles = StyleSheet.create({
     },
 
     btnBack: {
-        width: 50,
+        width: 40,
         height: 20,
-        width: 35
+        paddingTop: 3
     },
 
     backIcon:{
         color: COLORS.white,
-        fontSize: 18
+        fontSize: 16
     },
 
     container: {

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Platform } from "react-native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import GirlStackScreen from './GirlStackScreen';
 import AccountStackScreen from './AccountStackScreen';
@@ -7,6 +8,10 @@ import VideoStackScreen from './VideoStackScreen';
 import NewsStackScreen from './NewsStackScreen';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 AntDesign.loadFont();
+
+import Entypo from 'react-native-vector-icons/Entypo';
+Entypo.loadFont();
+
 import { COLORS } from './../../constants';
 import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from "../auth/LoginScreen";
@@ -15,7 +20,6 @@ import RegistryScreen from "../auth/RegistryScreen";
 const Tab = createBottomTabNavigator();
 
 const tabBarOptions = {
-
     showLabel: true,
     style: {
       backgroundColor: COLORS.bgHeader,
@@ -29,20 +33,20 @@ const tabBarOptions = {
 const screenOptions = ({ route }) => ({
   tabBarIcon: ({ focused }) => {
     let iconName = "home";
-
+    let size = Platform.OS == 'ios' ? 24 : 20
     switch (route.name){
 
       case "Girl":
-        iconName = "home";
+        return <Entypo name='heart-outlined' size={size} color={ focused ? COLORS.primary : COLORS.white } />;
         break;
       case "Video":
-        iconName = "profile";
+        return <Entypo name='youtube' size={size} color={ focused ? COLORS.primary : COLORS.white } />;
         break;
       case "Album":
-        iconName = "bells";
+        return <Entypo name='images' size={size} color={ focused ? COLORS.primary : COLORS.white } />;
         break;
       case "News":
-        iconName = "bells";
+        return <Entypo name='news' size={size} color={ focused ? COLORS.primary : COLORS.white } />;
         break;
       case "Account":
         iconName = "user";
@@ -51,7 +55,7 @@ const screenOptions = ({ route }) => ({
         iconName = "home";
     }
 
-    return <AntDesign name={iconName} size={24} color={ focused ? COLORS.primary : COLORS.white } />;
+    return <AntDesign name={iconName} size={size} color={ focused ? COLORS.primary : COLORS.white } />;
 
   },
 });
@@ -59,7 +63,7 @@ const screenOptions = ({ route }) => ({
 const MainTabScreen = () => {
     return (
         <Tab.Navigator tabBarOptions={tabBarOptions} screenOptions={screenOptions} >
-            <Tab.Screen name="Girl" options={{ tabBarLabel: 'Gái' }} component={GirlStackScreen} />
+            <Tab.Screen name="Girl" options={{ tabBarLabel: 'Gái gọi' }} component={GirlStackScreen} />
             <Tab.Screen name="Video" options={{ tabBarLabel: 'Phim sex' }} component={VideoStackScreen} />
             <Tab.Screen name="Album" options={{ tabBarLabel: 'Ảnh sex' }} component={AlbumStackScreen} />
             <Tab.Screen name="News" options={{ tabBarLabel: 'Ký sự' }} component={NewsStackScreen} />
