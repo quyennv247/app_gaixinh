@@ -1,5 +1,6 @@
-#Sun Jan 17 11:09:10 ICT 2021
+#Sun Jan 17 13:10:23 ICT 2021
 base.10=D\:\\Users\\quyennv\\Desktop\\app_gaixinh\\android\\D\:\\Projects\\2020\\Project_Gaixinh\\SourceCode\\Girl.App\\app_gaixinh\\android\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\out\\classes_8.dex
+path.34=classes_10.dex
 path.33=classes_9.dex
 path.32=classes_8.dex
 path.31=classes_7.dex
@@ -31,6 +32,7 @@ path.6=classes_4.dex
 path.5=classes_3.dex
 path.4=classes_2.dex
 path.3=classes_1.dex
+renamed.34=classes35.dex
 path.2=classes_0.dex
 renamed.33=classes34.dex
 path.1=classes.dex
@@ -78,6 +80,7 @@ renamed.13=classes14.dex
 renamed.12=classes13.dex
 renamed.11=classes12.dex
 renamed.10=classes11.dex
+base.34=D\:\\Projects\\2020\\Project_Gaixinh\\SourceCode\\Girl.App\\app_gaixinh\\android\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\out\\classes_10.dex
 base.33=D\:\\Projects\\2020\\Project_Gaixinh\\SourceCode\\Girl.App\\app_gaixinh\\android\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\out\\classes_9.dex
 base.32=D\:\\Projects\\2020\\Project_Gaixinh\\SourceCode\\Girl.App\\app_gaixinh\\android\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\out\\classes_8.dex
 base.31=D\:\\Projects\\2020\\Project_Gaixinh\\SourceCode\\Girl.App\\app_gaixinh\\android\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\out\\classes_7.dex

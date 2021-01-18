@@ -4,7 +4,7 @@ import Icon from "react-native-vector-icons/Feather";
 Icon.loadFont();
 import AntDesign from "react-native-vector-icons/AntDesign";
 AntDesign.loadFont();
-import { COLORS } from '../../constants';
+import { COLORS, SIZES } from '../../constants';
 import videoService from '../../api/videoService';
 import { Spinner } from '../../components'
 var { width, height } = Dimensions.get('window');
@@ -43,13 +43,16 @@ class VideoDetailScreen extends React.Component {
         });
     }
 
-    onbLoad = (data) => {
-        this.setState({ duration: data.duration })
+    onLoad = () => {
+        this.setState({ duration: this.state.data.Duration })
     }
 
     onEnd = () => {
         this.setState({ paused: true });
         this.data.seek(0);
+    }
+
+    onError = () => {
     }
 
     render(){
@@ -80,17 +83,18 @@ class VideoDetailScreen extends React.Component {
                         <Text style={styles.headerTitle}>{this.state.data.Title}</Text>
                     </View>
                     <View style={styles.body}>
-                        <Video source={{uri: this.state.data.File.FullPath}}   
+                        <Video source={{uri: this.state.data.File.VideoUrl}}   
                             ref={(ref) => {
                                 this.player = ref
                             }} 
                             onLoad={this.onLoad}                                    
                             onBuffer={this.onBuffer}               
-                            onError={this.videoError}  
+                            onError={this.onError}  
                             repeat={this.state.repeat}
                             paused={this.state.paused}            
-                            fullscreen={false}
+                            fullscreen={true}
                             controls={true}
+                            resizeMode={"contain"}
                             style={styles.backgroundVideo} />
                     </View>
                     
@@ -109,7 +113,7 @@ const styles = StyleSheet.create({
         top: 0,
         left: 0,
         bottom: 0,
-        right: 0,
+        right: 0
     },
 
     navigation: {
@@ -118,7 +122,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         flexDirection: 'row',
         justifyContent: 'flex-start',
-        height: 40,
+        height: SIZES.NavigationHeight,
         marginTop: Platform.OS == 'ios' ? 0 : StatusBar.currentHeight,
     },
 

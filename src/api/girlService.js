@@ -11,6 +11,15 @@ export default {
         });
     },
 
+    call(id) {
+        let url = API_CONTROLLER + 'Call';
+        return httpClient.get(url, {
+            params: {
+                id: id
+            }
+        });
+    },
+
     getGirls(pageIndex, pageSize, categoryId, fromPrice, toPrice, title) {
         let url = API_CONTROLLER + 'GetGirls';
         return httpClient.get(url, {

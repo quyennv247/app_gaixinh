@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, StatusBar, Dimensions, Platform, Image, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, StatusBar, Dimensions, Image, SafeAreaView } from 'react-native';
 import { COLORS } from './../constants';
 import Icon from 'react-native-vector-icons/Feather';
 Icon.loadFont();
@@ -7,15 +7,12 @@ var { width, height } = Dimensions.get('window');
 import { AuthContext } from '../components/Context';
 
 const LandingScreen = () => {
-    
-    const [displayAddress, setDisplayAddress] = useState("Waiting for Current Location")
-
-    const { setPassword } = React.useContext(AuthContext);
+    const { setLoading } = React.useContext(AuthContext);
 
     useEffect(() => {
         setTimeout(() =>{
-            //setPassword('Test')
-        }, 30000)
+            setLoading(false)
+        }, 1500)
     })
 
     return (
@@ -56,8 +53,9 @@ const style = StyleSheet.create({
 
     title: {
         fontSize: 18,
-        fontWeight: '700',
-        color: COLORS.primary
+        fontWeight: '600',
+        color: COLORS.primary,
+        fontFamily: 'sans-serif'
     },
 })
 

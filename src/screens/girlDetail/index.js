@@ -1,11 +1,11 @@
 import React from "react";
-import { View, Text, StyleSheet, StatusBar, ScrollView, Dimensions, Pressable, SafeAreaView, Platform  } from "react-native";
+import { Linking, View, Text, StyleSheet, StatusBar, ScrollView, Dimensions, Pressable, SafeAreaView, Platform  } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 Icon.loadFont();
 import AntDesign from "react-native-vector-icons/AntDesign";
 AntDesign.loadFont();
 import HTML from "react-native-render-html";
-import { COLORS } from '../../constants';
+import { COLORS, SIZES } from '../../constants';
 import girlService from '../../api/girlService';
 import { Spinner } from '../../components'
 var { width, height } = Dimensions.get('window');
@@ -34,15 +34,34 @@ class GirlDetailScreen extends React.Component {
             else{
                 alert(response.error);
             }
-            }).finally(() => { this.setState({ loading: false });; 
+            }).finally(() => { this.setState({ loading: false });
         });
+    }
+
+    call = (id, number) => {
+        let phoneNumber = '';
+        if (Platform.OS === 'android') { phoneNumber = `tel:${number}`; }
+        else {phoneNumber = `telprompt:${number}`; }
+        Linking.openURL(phoneNumber);
+
+        girlService.call(id).then().finally();
     }
 
     render(){
         if(this.state.loading){
             return (
                 <SafeAreaView style={styles.container}>
-                    <Spinner /> 
+                    <StatusBar backgroundColor={COLORS.bgHeader} translucent barStyle="light-content" />
+                    <View style={styles.navigation}>
+                        <Pressable style={styles.btnBack} onPress={() => this.props.navigation.goBack()}>
+                            <AntDesign style={styles.backIcon} name="left" />
+                        </Pressable>
+                        <Text style={styles.categoryText}></Text>
+                    </View>
+                    <View style={styles.body}>
+                        <Spinner /> 
+                    </View>
+                    
                 </SafeAreaView>
             )
         }
@@ -111,10 +130,10 @@ class GirlDetailScreen extends React.Component {
                     </ScrollView>
 
                     <View style={styles.action}>
-                        <View style={styles.phone}>
+                        <Pressable onPress={() => this.call(this.state.data.Id, this.state.data.Phone)} style={styles.phone}>
                             <Icon style={styles.phonIcon} name='phone-call'/>
                             <Text style={styles.phoneText}>Gọi điện</Text>
-                        </View>
+                        </Pressable>
                         <View style={styles.price}>
                             <Icon style={styles.priceIcon} name='dollar-sign'/>
                             <Text style={styles.priceText}>{this.state.data.Price}K</Text>
@@ -133,7 +152,7 @@ class GirlDetailScreen extends React.Component {
 const styles = StyleSheet.create({
    
     btnBack: {
-        width: 50,
+        width: 40,
         height: 20,
     },
 
@@ -154,10 +173,10 @@ const styles = StyleSheet.create({
 
     navigation: {
         backgroundColor: COLORS.bgHeader,
-        height: 50,
+        height: SIZES.NavigationHeight,
         marginTop: Platform.OS == 'ios' ? 0 : StatusBar.currentHeight,
         flexDirection: 'row',
-        paddingTop: 15,
+        paddingTop: 10,
         paddingLeft: 10
     },
 

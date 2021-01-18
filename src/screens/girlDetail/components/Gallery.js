@@ -1,6 +1,6 @@
 import React from 'react';
 import { 
-    Text,
+    LogBox,
     Image,
     StyleSheet,
     Dimensions,
@@ -12,22 +12,42 @@ import {
 var { width } = Dimensions.get('window');
 import Swiper from 'react-native-swiper';
 import { COLORS } from '../../../constants';
+import ImageView from 'react-native-image-view';
 
 class Gallery extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            isImageViewVisible: false,
+            imageIndex: 0,
+        }
     }
 
+    componentDidMount(){
+        LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
+    }
+
+    handleViewImage = (index) => {
+        this.setState({ isImageViewVisible: true, imageIndex: index })
+    }
 
     render() {
+        const images = [];
         return (
             <ScrollView>
-              <View style={ styles.container } >
+                <View style={ styles.container } >
                     <Swiper style={ styles.swiper } showsButtons={false} autoplay={true} autoplayTimeout={3}>
                         {
-                            this.props.data.map((item)=>{
+                            this.props.data.map((item, index)=>{
+                                const obj = {
+                                    source: {
+                                        uri: item.Image.FullPath
+                                    }
+                                }
+                                images.push(obj);
+
                                 return(
-                                    <Pressable onPress={() => this.handleToSliderScreen(item)} key={item.Id} >
+                                    <Pressable onPress={() => this.handleViewImage(index)} key={item.Id} >
                                         <Image style={styles.image} resizeMode="cover" source={{uri:item.Image.FullPath}}/>
                                     </Pressable>
                                 )
@@ -36,6 +56,17 @@ class Gallery extends React.Component {
                     </Swiper>
                     <View style={{height:10}} />
                 </View>
+                <ImageView
+                    glideAlways
+                    images={images}
+                    imageIndex={this.state.imageIndex}
+                    animationType="fade"
+                    isVisible={this.state.isImageViewVisible}
+                    onClose={() => this.setState({isImageViewVisible: false})}
+                    onImageChange={index => {
+                        //console.log(index);
+                    }}
+                />
             </ScrollView>
           );
     }
@@ -45,10 +76,9 @@ const styles = StyleSheet.create({
     container: {
         width: width, 
         alignItems:'center',
-        paddingLeft: 10,
         paddingRight: 10,
         backgroundColor: COLORS.bg,
-        paddingTop: 5
+        paddingTop: 2
     },
 
     swiper: {

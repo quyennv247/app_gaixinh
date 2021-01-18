@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, StatusBar, Dimensions, FlatList, TouchableOpacity, Pressable, Image, SafeAreaView, Platform } from "react-native";
-import { COLORS } from "../../constants";
+import { COLORS, SIZES } from "../../constants";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 Ionicons.loadFont();
 import Icon from "react-native-vector-icons/Feather";
@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderBottomColor: COLORS.gray5,
         borderBottomWidth: 0.5,
-        height: 50,
+        height: SIZES.NavigationHeight,
         marginTop: Platform.OS == 'ios' ? 0 : StatusBar.currentHeight
     },
 

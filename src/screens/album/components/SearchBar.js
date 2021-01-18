@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, Pressable, Platform, StatusBar } from 'react-native';
-import { ICONS, COLORS } from '../../../constants';
+import { ICONS, COLORS, SIZES } from '../../../constants';
 import Icon from "react-native-vector-icons/Feather";
 Icon.loadFont();
 
@@ -34,7 +34,7 @@ const style = StyleSheet.create({
         alignItems: 'center',
         paddingLeft: 10,
         paddingRight: 10,
-        height: 50,
+        height: SIZES.NavigationHeight,
         marginTop: Platform.OS == 'ios' ? 0 : StatusBar.currentHeight,
     },
 

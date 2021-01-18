@@ -4,7 +4,7 @@ import Icon from "react-native-vector-icons/Feather";
 Icon.loadFont();
 import AntDesign from "react-native-vector-icons/AntDesign";
 AntDesign.loadFont();
-import { COLORS } from '../../constants';
+import { COLORS, SIZES } from '../../constants';
 import newsService from '../../api/newsService';
 import { Spinner } from '../../components'
 var { width, height } = Dimensions.get('window');
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
         alignContent: 'center',
-        height: 50,
+        height: SIZES.NavigationHeight,
         marginTop: Platform.OS == 'ios' ? 0 : StatusBar.currentHeight
     },
 
