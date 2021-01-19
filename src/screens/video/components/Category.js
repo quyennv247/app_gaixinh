@@ -70,7 +70,7 @@ class Category extends React.Component {
 
     renderItem(item){
         return(
-            <Pressable onPress={() => this.handleClickSearch(item.Id)} style={this.state.categoryId == item.Id ? styles.itemActive : styles.item}>
+            <Pressable key={item.Id} onPress={() => this.handleClickSearch(item.Id)} style={this.state.categoryId == item.Id ? styles.itemActive : styles.item}>
                 <Text style={this.state.categoryId == item.Id ? styles.itemTextActive : styles.itemText}>{item.Title}</Text>
             </Pressable>
         )
