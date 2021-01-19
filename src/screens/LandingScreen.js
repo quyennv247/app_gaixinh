@@ -31,7 +31,7 @@ const LandingScreen = () => {
 const style = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: COLORS.white
+        backgroundColor: COLORS.bgHeader
     },
     
     body: {
@@ -54,8 +54,7 @@ const style = StyleSheet.create({
     title: {
         fontSize: 18,
         fontWeight: '600',
-        color: COLORS.primary,
-        fontFamily: 'sans-serif'
+        color: COLORS.primary
     },
 })
 

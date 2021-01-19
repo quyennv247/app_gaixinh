@@ -6,9 +6,7 @@ import {
     TextInput,
     StyleSheet,
     StatusBar,
-    Image,
-    SafeAreaView,
-    Dimensions
+    SafeAreaView
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -22,7 +20,6 @@ import Loading from "../../components/Loading";
 import Success from "./Success";
 import accountService from "../../api/accountService";
 import AsyncStorage from '@react-native-community/async-storage';
-var { height } = Dimensions.get('window');
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { RadioButton } from 'react-native-paper';
 

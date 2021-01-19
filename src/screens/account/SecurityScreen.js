@@ -230,7 +230,7 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
-        backgroundColor: COLORS.bg
+        backgroundColor: COLORS.bgHeader
     },
 
     navigation: {
@@ -274,6 +274,7 @@ const styles = StyleSheet.create({
     },
 
     body: {
+        flex:1,
         backgroundColor: COLORS.bg,
         paddingHorizontal: 10,
         paddingTop: 10,

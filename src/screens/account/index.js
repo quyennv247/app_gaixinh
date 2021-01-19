@@ -119,7 +119,7 @@ class AccountScreen extends React.Component {
 
             alert('Logout thành công');
             
-            this.props.navigation.navigate('Home');
+            this.props.navigation.navigate('Girl');
         }
         catch(exception) {
             return false;
@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
-        backgroundColor: COLORS.bg
+        backgroundColor: COLORS.bgHeader
     },
 
     header: {
