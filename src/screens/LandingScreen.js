@@ -5,6 +5,8 @@ import Icon from 'react-native-vector-icons/Feather';
 Icon.loadFont();
 var { width, height } = Dimensions.get('window');
 import { AuthContext } from '../components/Context';
+import DeviceInfo from 'react-native-device-info';
+import appInstalledService from "../api/appInstalledService";
 
 const LandingScreen = () => {
     const { setLoading } = React.useContext(AuthContext);
@@ -13,7 +15,24 @@ const LandingScreen = () => {
         setTimeout(() =>{
             setLoading(false)
         }, 1500)
+
+        addDevice();
     })
+
+    const addDevice = () => {
+
+        let systemName = DeviceInfo.getSystemName();
+        let uniqueId = DeviceInfo.getUniqueId();
+        let version = DeviceInfo.getVersion();
+
+        const entity = {
+            DeviceId: uniqueId,
+            AppVersion: version,
+            DeviceType: systemName == "Android" ? 1 : 2
+        };
+
+        appInstalledService.add(entity);
+    }
 
     return (
         <SafeAreaView style={style.container}>
