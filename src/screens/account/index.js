@@ -13,6 +13,8 @@ var { width, height } = Dimensions.get('window');
 import AsyncStorage from '@react-native-community/async-storage';
 import userService from "../../api/userService";
 import { Spinner } from "../../components/Spinner";
+import AntDesign from "react-native-vector-icons/AntDesign";
+AntDesign.loadFont();
 
 class AccountScreen extends React.Component {
     constructor(props){
@@ -43,7 +45,7 @@ class AccountScreen extends React.Component {
 
     async componentDidMount(){
         this.props.navigation.addListener('focus', () => {
-           this.getLoginInfo();
+            this.getLoginInfo();
         });
     }
 
@@ -51,14 +53,17 @@ class AccountScreen extends React.Component {
         const loginId = await AsyncStorage.getItem('login_id');
         const userName = await AsyncStorage.getItem('user_name');
 
-       await this.setState({
-           loginId: loginId,
-           userName: userName
-       });
+        await this.setState({
+            loginId: loginId,
+            userName: userName
+        });
 
-       if(loginId !== null && loginId !== '' && loginId !== '0' && loginId !== 0){
-           this.getInfo();
-       }
+        if(loginId !== null && loginId !== '' && loginId !== '0' && loginId !== 0){
+            this.getInfo();
+        }
+        else{
+            this.setState({ id: 0 });
+        }
     }
 
     getInfo = async () => {
@@ -83,6 +88,15 @@ class AccountScreen extends React.Component {
                 });
             }
         }).finally(() => { this.setState({loading: false}); });
+    }
+
+    handleMessage(){
+        if(this.state.id == 0 || this.state.id == '0'){
+            this.props.navigation.navigate('Login');
+        }
+        else{
+            this.props.navigation.navigate('Messenger')
+        }
     }
     
     handleToProfile(){
@@ -213,6 +227,18 @@ class AccountScreen extends React.Component {
                             </View>
                             <View style={styles.nav}>
                                 <View style={styles.navText}><Text style={styles.menuText}>Bảo mật tài khoản</Text></View>
+                                <View style={styles.iconArrow}>
+                                    <FontAwesome style={styles.arrow}  name='angle-right' />
+                                </View>
+                            </View>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity onPress={() => this.handleMessage()} style={styles.menuItem}>
+                            <View style={styles.menuIcon}>
+                                <AntDesign style={styles.iconMessage}  name='message1' />
+                            </View>
+                            <View style={styles.nav}>
+                                <View style={styles.navText}><Text style={styles.menuText}>Tin nhắn</Text></View>
                                 <View style={styles.iconArrow}>
                                     <FontAwesome style={styles.arrow}  name='angle-right' />
                                 </View>
@@ -370,6 +396,11 @@ const styles = StyleSheet.create({
     iconSecurity: {
         fontSize: 16,
         color: COLORS.green,
+    },
+
+    iconMessage: {
+        fontSize: 16,
+        color: COLORS.yellow,
     },
 
     footer: {

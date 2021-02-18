@@ -31,6 +31,7 @@ class RegistryScreen extends React.Component {
             username: '',
             password: '',
             confirmPassword: '',
+            phone: '',
             loading: false,
             securePasswordEntry: true,
             secureConfirmPasswordEntry: true,
@@ -44,12 +45,19 @@ class RegistryScreen extends React.Component {
             isRequireConfirmPassword: true,
             comparePassword: true,
             success: false,
-            gender: '1'
+            gender: '1',
+            isRequirePhone: true,
+            isValidPhone: true,
+            isPhoneNumber: true,
         }
     }
 
     componentDidMount(){
        
+    }
+
+    isPhoneNumber = (number) => {
+        return /(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})\b/.test(number);
     }
 
     updateSecurePasswordEntry = () => {
@@ -167,6 +175,7 @@ class RegistryScreen extends React.Component {
                 Password: password,
                 FirstName: '',
                 LastName: '',
+                Phone: this.state.phone,
                 Gender: this.state.gender
             };
         
@@ -181,6 +190,37 @@ class RegistryScreen extends React.Component {
             }).finally(() => { this.setState({loading: false}); });
         }
     }
+
+    handlePhoneChange = (val) => {
+        if(val == '') {
+            this.setState({
+                phone: val,
+                isValidPhone: false,
+                isPhoneNumber: true,
+                isRequirePhone: true
+            });
+            return false;
+        } 
+        else if (this.isPhoneNumber(val.trim()) == false) {
+            this.setState({
+                phone: val,
+                isValidPhone: false,
+                isPhoneNumber: false,
+                isRequirePhone: false
+            });
+            return false;
+        }
+        else{
+            this.setState({
+                phone: val,
+                isValidPhone: true,
+                isPhoneNumber: true,
+                isRequirePhone: false
+            });
+            return true;
+        }
+    }
+
 
     setGender = (gender) => {
         this.setState({ gender: gender });
@@ -273,6 +313,23 @@ class RegistryScreen extends React.Component {
                                 : <Feather name="eye" style={styles.iconPass} />
                                 }
                             </TouchableOpacity>
+                        </View>
+
+                        { 
+                            this.state.isValidPhone ? null : 
+                            <Animatable.View animation="fadeInLeft" duration={500} style={styles.invalid}>
+                                {
+                                    this.state.isValidPhone == false ? null : <Text style={styles.errorMsg}>Vui lòng nhập số điện thoại.</Text>
+                                }
+                                {
+                                this.state.isPhoneNumber == true ? null : <Text style={styles.errorMsg}>Số điện thoại không đúng.</Text>
+                                }
+                            </Animatable.View>
+                        }
+
+                        <View style={styles.formGroup}>
+                            <FontAwesome name="phone" style={styles.iconInput}/>
+                            <TextInput onChangeText={(val) => this.handlePhoneChange(val)} style={styles.input} placeholder="Số điện thoại" placeholderTextColor={COLORS.textGray} autoCapitalize="none" />
                         </View>
 
                         <View style={styles.gender}>

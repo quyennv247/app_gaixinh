@@ -6,6 +6,7 @@ import AccountStackScreen from './AccountStackScreen';
 import AlbumStackScreen from './AlbumStackScreen';
 import VideoStackScreen from './VideoStackScreen';
 import NewsStackScreen from './NewsStackScreen';
+import LadyStackScreen from './LadyStackScreen';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 AntDesign.loadFont();
 
@@ -16,6 +17,10 @@ import { COLORS } from './../../constants';
 import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from "../auth/LoginScreen";
 import RegistryScreen from "../auth/RegistryScreen";
+import ForgetPasswordScreen from "../auth/ForgetPasswordScreen";
+import OTPScreen from "../auth/OTPScreen";
+import ResetPasswordScreen from "../auth/ResetPasswordScreen";
+import ChatScreen from "../messenger/ChatScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -24,7 +29,8 @@ const tabBarOptions = {
     style: {
       backgroundColor: COLORS.bgHeader,
       borderTopColor: COLORS.bgHeader,
-      paddingBottom: 5
+      paddingBottom: 7,
+      paddingTop: 10
     },
     activeTintColor: COLORS.primary,
     inactiveTintColor: COLORS.white,
@@ -33,7 +39,7 @@ const tabBarOptions = {
 const screenOptions = ({ route }) => ({
   tabBarIcon: ({ focused }) => {
     let iconName = "home";
-    let size = Platform.OS == 'ios' ? 24 : 20
+    let size = Platform.OS == 'ios' ? 24 : 18
     switch (route.name){
 
       case "Girl":
@@ -46,8 +52,10 @@ const screenOptions = ({ route }) => ({
         return <Entypo name='images' size={size} color={ focused ? COLORS.primary : COLORS.white } />;
         break;
       case "News":
-        return <Entypo name='news' size={size} color={ focused ? COLORS.primary : COLORS.white } />;
+        return <Entypo name='light-up' size={size} color={ focused ? COLORS.primary : COLORS.white } />;
         break;
+      case "Lady":
+        return <Entypo name='moon' size={size} color={ focused ? COLORS.primary : COLORS.white } />;
       case "Account":
         iconName = "user";
         break;
@@ -64,6 +72,7 @@ const MainTabScreen = () => {
     return (
         <Tab.Navigator tabBarOptions={tabBarOptions} screenOptions={screenOptions} >
             <Tab.Screen name="Girl" options={{ tabBarLabel: 'Gái gọi' }} component={GirlStackScreen} />
+            <Tab.Screen name="Lady" options={{ tabBarLabel: 'Máy bay' }} component={LadyStackScreen} />
             <Tab.Screen name="Video" options={{ tabBarLabel: 'Phim sex' }} component={VideoStackScreen} />
             <Tab.Screen name="Album" options={{ tabBarLabel: 'Ảnh sex' }} component={AlbumStackScreen} />
             <Tab.Screen name="News" options={{ tabBarLabel: 'Ký sự' }} component={NewsStackScreen} />
@@ -79,6 +88,10 @@ const AppStackScreen = () => {
       <AppStack.Screen name="App" options={{headerShown: false}} component={MainTabScreen} />
       <AppStack.Screen name="Login" options={{headerShown: false}} component={LoginScreen} />
       <AppStack.Screen name="Registry" options={{headerShown: false}} component={RegistryScreen} />
+      <AppStack.Screen name="ForgetPassword" options={{headerShown: false}} component={ForgetPasswordScreen} />
+      <AppStack.Screen name="OTP" options={{headerShown: false}} component={OTPScreen} />
+      <AppStack.Screen name="ResetPassword" options={{headerShown: false}} component={ResetPasswordScreen} />
+      <AppStack.Screen name="Chat" options={{headerShown: false}} component={ChatScreen} />
     </AppStack.Navigator>
   );
 }

@@ -166,7 +166,7 @@ class LoginScreen extends React.Component {
                             </TouchableOpacity>
 
                             <View style={styles.forgot}>
-                                <TouchableOpacity>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('ForgetPassword')}>
                                     <Text style={styles.forgotText}>Quên mật khẩu ?</Text>
                                 </TouchableOpacity>
                             </View>
@@ -302,7 +302,7 @@ const styles = StyleSheet.create({
     },
 
     forgotText: {
-        color: COLORS.textGray
+        color: COLORS.blue
     },
 
     signUp: {
